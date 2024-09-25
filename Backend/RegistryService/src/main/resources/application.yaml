@@ -1,0 +1,28 @@
+#spring:
+#  config:
+#    import: optional:configserver:http://localhost:8888
+#  application:
+#    name: RegistryService
+#  cloud:
+#    config:
+#      uri: http://localhost:8888
+#      name: RegistryService
+spring:
+  application:
+    name: RegistryService
+server:
+  port: 8761
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+logging:
+  pattern:
+    console: "%msg%n"
+  level:
+    com.netflix.eureka: DEBUG
+
+#  instance:
+#    prefer-ip-address: true # This is important for the Docker container to work

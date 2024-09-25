@@ -1,0 +1,58 @@
+#spring:
+#  config:
+#    import: configserver:http://localhost:8888
+#  cloud:
+#    config:
+#      uri: http://localhost:8888
+#      name: GatewayService
+server:
+  port: 8080
+spring:
+  application:
+    name: GatewayService
+  cloud:
+    gateway:
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
+      mvc:
+        routes:
+          - id: passenger
+            uri: lb://PASSENGER
+            predicates:
+              - Path=/passenger/**
+              - Method=GET
+            filters:
+              - RewritePath=/passenger/health, /health
+          - id: transportation
+            uri: lb://TRANSPORTATION
+            predicates:
+              - Path=/transportation/**
+              - Method=GET
+            filters:
+              - RewritePath=/transportation/health, /health
+          - id: RegistryService
+            uri: http://localhost:8761
+            predicates:
+              - Path=/eureka/web
+            filters:
+              - SetPath=/
+          - id: RegistryService
+            uri: http://localhost:8761
+            predicates:
+              - Path=/eureka/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+logging:
+  pattern:
+    console: '%msg%n'
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
