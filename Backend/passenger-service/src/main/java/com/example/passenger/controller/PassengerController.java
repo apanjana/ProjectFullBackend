@@ -18,6 +18,7 @@ public class PassengerController {
     }
 
     @GetMapping
+
     public List<PassengerDto> getAllPassengers() {
         return passengerService.getAllPassengers();
     }

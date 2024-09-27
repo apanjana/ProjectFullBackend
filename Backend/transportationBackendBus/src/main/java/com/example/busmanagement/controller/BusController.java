@@ -2,6 +2,7 @@ package com.example.busmanagement.controller;
 
 import com.example.busmanagement.domain.Bus;
 import com.example.busmanagement.service.BusService;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,8 @@ public class BusController {
     }
 
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:4200")
+//    @CrossOrigin(origins = "http://localhost:4200")
+//    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public List<Bus> getAllBuses() {
         return busService.getAllBuses();
     }

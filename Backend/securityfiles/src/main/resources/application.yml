@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/users?useSSL=false&serverTimezone=UTC
     username: root
-    password: Aditya@22
+    password: Christinaprince@2002
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -17,14 +17,14 @@ spring:
     gateway:
       mvc:
         routes:
-          - id: lbservice-route
+          - id: PASSENGER
             uri: lb://PASSENGER
             predicates:
               - Path=/passengers/**
 
 
-          - id: lbservice2-route
-            uri: lb://TRANSPORTATION
+          - id: transportation-route
+            uri: lb://transportation
             predicates:
                - Path=/buses/**
 

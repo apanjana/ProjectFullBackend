@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/auth")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
     private final JwtService jwtService;
     private final AuthenticationService authenticationService;
